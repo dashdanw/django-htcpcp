@@ -1,4 +1,4 @@
-#Django HyperText Coffee Pot Protocol Middleware (HTCPCP)
+# Django HyperText Coffee Pot Protocol Middleware (HTCPCP)
 
 Setup
 -----
