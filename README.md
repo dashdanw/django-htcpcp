@@ -13,8 +13,6 @@ or
 
 and then add it to your installed apps:
 
-::
-
     INSTALLED_APPS = (
         ...
         'django-htcpcp',
@@ -22,8 +20,6 @@ and then add it to your installed apps:
     )
 
 You will also need to add a middleware class to listen in on responses:
-
-::
 
     # Use `MIDDLEWARE_CLASSES` prior to Django 1.10
     MIDDLEWARE = [
