@@ -1,4 +1,8 @@
-# Django HyperText Coffee Pot Protocol Middleware (HTCPCP)
+Django HyperText Coffee Pot Protocol Middleware (HTCPCP)
+-----
+Implemented HTCPCP as per RFC 2324.
+
+https://www.ietf.org/rfc/rfc2324.txt
 
 Setup
 -----
