@@ -1,8 +1,15 @@
 from distutils.core import setup
 setup(
   name='django-htcpcp',
-  packages=['django-htcpcp'],
-  version='0.1.1',
+  packages=[
+    'djhtcpcp',
+    'djhtcpcp.middleware'
+   ],
+  install_requires=[
+        'setuptools',
+        'Django>=1.8'
+   ],
+  version='0.1.2',
   description='Django HyperText Coffee Pot Protocol Middleware (HTCPCP)',
   author='Dash Winterson',
   author_email='dashdanw@gmail.com',
