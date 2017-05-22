@@ -9,7 +9,7 @@ setup(
         'setuptools',
         'Django>=1.8'
    ],
-  version='0.1.2',
+  version='0.1.3',
   description='Django HyperText Coffee Pot Protocol Middleware (HTCPCP)',
   author='Dash Winterson',
   author_email='dashdanw@gmail.com',
