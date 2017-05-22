@@ -13,7 +13,7 @@ Install by downloading the source and running:
 
 or
 
-    pip install django-cors-middleware
+    pip install htcpcp
 
 and then add it to your installed apps:
 
