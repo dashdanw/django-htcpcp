@@ -1,6 +1,12 @@
 from django.http import HttpResponse
 
-class HTCPCPMiddleware(object):
+try:
+    from django.utils.deprecation import MiddlewareMixin
+except ImportError:
+    MiddlewareMixin = object
+
+
+class HTCPCPMiddleware(MiddlewareMixin):
     coffee_list = [
         '/coffee/black/',
         '/coffee/espresso/'
