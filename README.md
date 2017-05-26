@@ -13,7 +13,7 @@ Install by downloading the source and running:
 
 or
 
-    pip install htcpcp
+    pip install django-htcpcp
 
 and then add it to your installed apps:
 
