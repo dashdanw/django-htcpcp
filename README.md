@@ -25,8 +25,17 @@ and then add it to your installed apps:
 
 You will also need to add a middleware class to listen in on responses:
 
-    # Use `MIDDLEWARE_CLASSES` prior to Django 1.10
+Django 1.10+
+
     MIDDLEWARE = [
+        ...
+        'djhtcpcp.middleware.HTCPCPMiddleware',
+        ...
+    ]
+
+Django 1.8-1.10:
+
+    MIDDLEWARE_CLASSES = [
         ...
         'djhtcpcp.middleware.HTCPCPMiddleware',
         ...
