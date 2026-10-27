@@ -1,1 +1,3 @@
-__version__ = '0.2.6'
+"""Django middleware implementing the Hyper Text Coffee Pot Control Protocol (RFC 2324)."""
+
+__version__ = "0.3.0"

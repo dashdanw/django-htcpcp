@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v6
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { python: "3.10", django: "4.2" }
+          - { python: "3.12", django: "4.2" }
+          - { python: "3.10", django: "5.2" }
+          - { python: "3.13", django: "5.2" }
+          - { python: "3.12", django: "6.0" }
+          - { python: "3.14", django: "6.0" }
+          - { python: "3.14", django: "6.1" }
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: ${{ matrix.python }}
+      - run: uv run --with "django~=${{ matrix.django }}.0" pytest

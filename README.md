@@ -1,42 +1,62 @@
-Django HyperText Coffee Pot Protocol Middleware (HTCPCP)
------
-Implemented HTCPCP as per RFC 2324.
+# django-htcpcp
 
-https://www.ietf.org/rfc/rfc2324.txt
+[![PyPI](https://img.shields.io/pypi/v/django-htcpcp.svg)](https://pypi.org/project/django-htcpcp/)
+[![CI](https://github.com/dashdanw/django-htcpcp/actions/workflows/ci.yml/badge.svg)](https://github.com/dashdanw/django-htcpcp/actions/workflows/ci.yml)
 
-Setup
------
+Django middleware implementing the HyperText Coffee Pot Control Protocol
+(HTCPCP), as specified in [RFC 2324](https://www.rfc-editor.org/rfc/rfc2324)
+and extended by [RFC 7168](https://www.rfc-editor.org/rfc/rfc7168).
 
-Install by downloading the source and running:
+| Request                     | Response                    |
+| --------------------------- | --------------------------- |
+| `BREW` to a coffee pot      | `202 Accepted` — "Say WHEN" |
+| `WHEN` to a coffee pot      | `201 Created` — coffee!     |
+| `BREW`/`WHEN` anywhere else | `418 I'm a teapot`          |
+| Anything else               | Passed through untouched    |
 
-    python setup.py install
+## Requirements
 
-or
+- Python 3.10+
+- Django 4.2+
 
-    pip install django-htcpcp
+## Installation
 
-and then add it to your installed apps:
+```bash
+pip install django-htcpcp
+```
 
-    INSTALLED_APPS = (
-        ...
-        'djhtcpcp',
-        ...
-    )
+Add the middleware to your settings:
 
-You will also need to add a middleware class to listen in on responses:
+```python
+MIDDLEWARE = [
+    # ...
+    "djhtcpcp.middleware.HTCPCPMiddleware",
+]
+```
 
-Django 1.10+
+Adding `"djhtcpcp"` to `INSTALLED_APPS` is optional.
 
-    MIDDLEWARE = [
-        ...
-        'djhtcpcp.middleware.HTCPCPMiddleware',
-        ...
-    ]
+The middleware works under both WSGI and ASGI.
 
-Django 1.8-1.10:
+## Configuration
 
-    MIDDLEWARE_CLASSES = [
-        ...
-        'djhtcpcp.middleware.HTCPCPMiddleware',
-        ...
-    ]
+By default `/coffee/black/` and `/coffee/espresso/` are coffee pots. Override
+them with:
+
+```python
+HTCPCP_COFFEE_PATHS = ["/kitchen/pot-1/", "/kitchen/pot-2/"]
+```
+
+## Try it
+
+```bash
+curl -i -X BREW http://localhost:8000/coffee/black/
+curl -i -X BREW http://localhost:8000/tea/earl-grey/
+```
+
+## Development
+
+```bash
+uv run pytest
+uv run ruff check .
+```

@@ -1,0 +1,66 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "django-htcpcp"
+dynamic = ["version"]
+description = "Django HyperText Coffee Pot Control Protocol (HTCPCP) middleware"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [{ name = "Dash Winterson", email = "dashdanw@gmail.com" }]
+keywords = ["htcpcp", "django", "middleware", "RFC 2324", "RFC 7168", "coffee", "teapot", "418"]
+dependencies = ["Django>=4.2"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Web Environment",
+    "Framework :: Django",
+    "Framework :: Django :: 4.2",
+    "Framework :: Django :: 5.2",
+    "Framework :: Django :: 6.0",
+    "Framework :: Django :: 6.1",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Internet :: WWW/HTTP :: WSGI :: Middleware",
+]
+
+[project.urls]
+Homepage = "https://github.com/dashdanw/django-htcpcp"
+Source = "https://github.com/dashdanw/django-htcpcp"
+Changelog = "https://github.com/dashdanw/django-htcpcp/blob/master/CHANGELOG.md"
+Issues = "https://github.com/dashdanw/django-htcpcp/issues"
+
+[dependency-groups]
+dev = ["pytest>=8", "pytest-django>=4.9", "pytest-asyncio>=0.24", "ruff>=0.6"]
+
+[tool.hatch.version]
+path = "djhtcpcp/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+include = ["djhtcpcp", "tests", "README.md", "CHANGELOG.md", "LICENSE"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["djhtcpcp"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "tests.settings"
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "DJ"]
